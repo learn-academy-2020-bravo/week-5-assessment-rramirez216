@@ -7,7 +7,31 @@ var secretCodeWord1 = "lackadaisical"
 var secretCodeWord2 = "gobbledygook"
 // Expected output: "g0bbl3dyg00k"
 
+// create a function that takes in a string as an argument
+// split the string into an array
+// check to see if the string array has any of the vowels
+// if they do include a vowel replace it with the corresponding number
 
+const codeWordifier = (str) => {
+    let newArr = str.toLowerCase().split('')
+    return newArr.map((value) => {
+        if(value === "a") {
+            return value = 4
+        } else if(value === "e") {
+            return value = 3
+        } else if(value === "i") {
+            return value = 1
+        } else if(value === "o") {
+            return value = 0
+        } else {
+            return value
+        }
+    }).join('')
+}
+
+
+console.log(codeWordifier(secretCodeWord1));
+console.log(codeWordifier(secretCodeWord2));
 
 
 
@@ -16,6 +40,20 @@ var secretCodeWord2 = "gobbledygook"
 var arrayOfWords = ["Apple", "Banana", "Plum", "Cherry", "Kiwi", "Peach"]
 // Expected output: "Apple" "Banana" "Peach"
 
+// create a function that takes in an array as an argument
+// use the filter method to filter out the ones that don't have the letter "A"
+// inside the fitler function make the value all lowercase to make sure it doesn't miss an uppercase A
+
+const letterA = (arr) => {
+    return arr.filter((value) => {
+        let lowered = value.toLowerCase()
+        if(lowered.includes("a") === true ) {
+            return value
+        }
+    })
+}
+
+console.log(letterA(arrayOfWords));
 
 
 
@@ -28,3 +66,35 @@ var hand2 = [5, 5, 3, 3, 4]
 // Expected output: false
 var hand3 = [5, 5, 5, 5, 4]
 // Expected output: false
+
+var hand4 = [100,1000,100,1000,1000]
+// Expected output: true
+
+
+//create a function that takes in an array as an argument
+// map through the function to check for matching numbers
+// push matching numbers into own array and count the length of the array to see if it matches the requirements for a full house
+
+const fullHouse = (arr) => {
+    let sortedNums = arr.sort((a,b) => a - b)
+    let firstMatch = []
+    let secondMatch = []
+     arr.map(value => {
+        if(value === sortedNums[1]) {
+            firstMatch.push(value)
+        } else if( value === sortedNums[sortedNums.length - 1]) {
+            secondMatch.push(value)
+        }
+    })
+
+    if(firstMatch.length === 2 && secondMatch.length === 3 || firstMatch.length === 3 && secondMatch.length === 2){
+        return true
+    } else {
+        return false
+    }
+}
+
+console.log(fullHouse(hand1));
+console.log(fullHouse(hand2));
+console.log(fullHouse(hand3));
+console.log(fullHouse(hand4));
